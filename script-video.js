@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const customContainers = document.querySelectorAll(".asdrubale .custom-container");
+  let scrollPosition = 0;
 
   customContainers.forEach((customContainer, index) => {
     const customMainVideo = customContainer.querySelector("video");
@@ -101,15 +102,13 @@ document.addEventListener("DOMContentLoaded", function () {
         customContainer.classList.remove("fullscreen");
         customFullScreenBtn.classList.replace("fa-compress", "fa-expand");
         resizeHandler();
-        const scrollY = window.scrollY;
-        window.scrollTo(0, scrollY);
+        window.scrollTo(0, scrollPosition);
       }
     };
 
     const resizeHandler = () => {
       if (!document.fullscreenElement) {
-        const scrollY = window.scrollY;
-        window.scrollTo(0, scrollY);
+        window.scrollTo(0, scrollPosition);
       }
     };
 
@@ -129,16 +128,19 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("keyup", keyupHandler);
 
     customFullScreenBtn.addEventListener("click", () => {
+      if (!document.fullscreenElement) {
+        scrollPosition = window.scrollY;
+      }
       customContainer.classList.toggle("fullscreen");
       if (document.fullscreenElement) {
         customFullScreenBtn.classList.replace("fa-compress", "fa-expand");
         document.exitFullscreen().then(() => {
-          setTimeout(resizeHandler, 100);
+          setTimeout(resizeHandler, 10);
         });
       } else {
         customFullScreenBtn.classList.replace("fa-expand", "fa-compress");
         customContainer.requestFullscreen();
-        setTimeout(resizeHandler, 100);
+        setTimeout(resizeHandler, 10);
       }
     });
 
