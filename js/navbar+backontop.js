@@ -39,36 +39,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // Get the button:
+
+
+// Get the button:
 let mybutton = document.getElementById("mybackontopBtn");
 
-// When the user scrolls down 150px from the top of the document, show the button
-window.onscroll = function () {
+// Function to handle scroll events
+function handleScroll() {
   if (window.scrollY > 150) {
     mybutton.style.display = "block";
   } else {
     mybutton.style.display = "none";
   }
-};
+}
 
-// When the user clicks on the button, scroll to the top of the document with animation
-function topFunction() {
-  // Define how much to scroll on each animation frame
+// Event listener for scroll
+window.addEventListener("scroll", handleScroll);
+
+// Function to scroll to the top with animation
+function animateScroll() {
   const scrollStep = window.scrollY / 30;
 
-  // Define the animation function
-  function animateScroll() {
+  function scrollStepFunction() {
     if (window.scrollY > 0) {
-      // Scroll up by scrollStep on each animation frame
       window.scrollTo(0, window.scrollY - scrollStep);
-
-      // Request the next animation frame
-      requestAnimationFrame(animateScroll);
+      requestAnimationFrame(scrollStepFunction);
     } else {
-      // Clear the interval when reaching the top
       mybutton.style.display = "none";
     }
   }
 
-  // Start the animation
-  animateScroll();
+  scrollStepFunction();
 }
+
+// Event listener for button click
+mybutton.addEventListener("click", animateScroll);
