@@ -1,8 +1,6 @@
-/* Import Google font - Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 :root {
-  --custom-main-player-color: #ff9100;
+  --custom-main-player-color: #9a7ef6;
 }
 
 * {
@@ -10,6 +8,13 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+}
+
+.asdrubale{
+  align-content: center;
+  justify-content: center;
+  margin:auto;
+  
 }
 
 .custom-video-multipli{
@@ -33,11 +38,12 @@
   user-select: none;
   overflow: hidden;
   max-width: 900px;
-  border-radius: 10px;
+  border-radius:2px;
   background: #000;
   aspect-ratio: 16 / 9;
   position: relative;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  /* cursor: pointer; */
   /* margin-bottom: 15px; */
 }
 
@@ -239,6 +245,8 @@
 
 .custom-container video {
   width: 100%;
+  border-radius: 2px; /* Aggiungi questa riga */
+
 }
 
 @media screen and (max-width: 540px) {
@@ -304,3 +312,8 @@
 .custom-options.left button.custom-play-pause {
   margin-left: -5px; /* Adjust the margin as needed */
 }
+
+.custom-container:hover video {
+  cursor: pointer;
+}
+
