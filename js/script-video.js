@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const customContainers = document.querySelectorAll(".asdrubale .custom-container");
   let scrollPosition = 0;
-  let isTouchDevice = 'ontouchstart' in window || navigator.msMaxTouchPoints;
-  let isScrolling = false;
 
   customContainers.forEach((customContainer, index) => {
     const customMainVideo = customContainer.querySelector("video");
@@ -27,21 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
     hideCustomControls();
 
     customContainer.addEventListener("mousemove", () => {
-      if (!isTouchDevice && !isScrolling) {
-        customContainer.classList.add("show-custom-controls");
-        clearTimeout(customTimer);
-        hideCustomControls();
-      }
-    });
-
-    customContainer.addEventListener("touchstart", function () {
-      isScrolling = true;
-      customContainer.classList.remove("show-custom-controls");
+      customContainer.classList.add("show-custom-controls");
       clearTimeout(customTimer);
-    });
-
-    customContainer.addEventListener("touchend", function () {
-      isScrolling = false;
       hideCustomControls();
     });
 
@@ -60,20 +45,19 @@ document.addEventListener("DOMContentLoaded", function () {
       return `${hours}:${minutes}:${seconds}`;
     };
 
-    customVideoTimeline.addEventListener("touchmove", (e) => {
+    customVideoTimeline.addEventListener("mousemove", (e) => {
       let timelineWidth = customVideoTimeline.clientWidth;
-      let touchX = e.touches[0].clientX - customVideoTimeline.getBoundingClientRect().left;
-      let percent = Math.floor((touchX / timelineWidth) * customMainVideo.duration);
+      let offsetX = e.offsetX;
+      let percent = Math.floor((offsetX / timelineWidth) * customMainVideo.duration);
       const progressTime = customVideoTimeline.querySelector("span");
-      touchX = touchX < 20 ? 20 : touchX > timelineWidth - 20 ? timelineWidth - 20 : touchX;
-      progressTime.style.left = `${touchX}px`;
+      offsetX = offsetX < 20 ? 20 : offsetX > timelineWidth - 20 ? timelineWidth - 20 : offsetX;
+      progressTime.style.left = `${offsetX}px`;
       progressTime.innerText = formatCustomTime(percent);
     });
 
-    customVideoTimeline.addEventListener("touchend", (e) => {
+    customVideoTimeline.addEventListener("click", (e) => {
       let timelineWidth = customVideoTimeline.clientWidth;
-      let touchX = e.changedTouches[0].clientX - customVideoTimeline.getBoundingClientRect().left;
-      customMainVideo.currentTime = (touchX / timelineWidth) * customMainVideo.duration;
+      customMainVideo.currentTime = (e.offsetX / timelineWidth) * customMainVideo.duration;
     });
 
     customMainVideo.addEventListener("timeupdate", (e) => {
