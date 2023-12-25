@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const customContainers = document.querySelectorAll(".asdrubale .custom-container");
   let scrollPosition = 0;
+  let isTouchDevice = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
   customContainers.forEach((customContainer, index) => {
     const customMainVideo = customContainer.querySelector("video");
@@ -25,19 +26,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     hideCustomControls();
 
-
-    document.addEventListener('touchmove', function(e) {
-      // Impedisci il comportamento predefinito solo se il tocco è all'interno della zona del lettore video
-      if (e.target.closest('.asdrubale')) {
-        e.preventDefault();
-      }
-    }, { passive: false });
-
+    
+    customContainers.forEach((customContainer, index) => {
 
     customContainer.addEventListener("mousemove", () => {
       customContainer.classList.add("show-custom-controls");
       clearTimeout(customTimer);
       hideCustomControls();
+    });
+
+    customContainer.addEventListener("mousemove", () => {
+      if (!isTouchDevice) {
+        customContainer.classList.add("show-custom-controls");
+        clearTimeout(customTimer);
+        hideCustomControls();
+      }
     });
 
     const formatCustomTime = (time) => {
@@ -177,4 +180,5 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+});
 });
