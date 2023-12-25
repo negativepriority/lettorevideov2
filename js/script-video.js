@@ -34,6 +34,17 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
+    customContainer.addEventListener("touchstart", function () {
+      isScrolling = true;
+      customContainer.classList.remove("show-custom-controls");
+      clearTimeout(customTimer);
+    });
+
+    customContainer.addEventListener("touchend", function () {
+      isScrolling = false;
+      hideCustomControls();
+    });
+
     const formatCustomTime = (time) => {
       let seconds = Math.floor(time % 60),
         minutes = Math.floor(time / 60) % 60,
@@ -49,19 +60,20 @@ document.addEventListener("DOMContentLoaded", function () {
       return `${hours}:${minutes}:${seconds}`;
     };
 
-    customVideoTimeline.addEventListener("mousemove", (e) => {
+    customVideoTimeline.addEventListener("touchmove", (e) => {
       let timelineWidth = customVideoTimeline.clientWidth;
-      let offsetX = e.offsetX;
-      let percent = Math.floor((offsetX / timelineWidth) * customMainVideo.duration);
+      let touchX = e.touches[0].clientX - customVideoTimeline.getBoundingClientRect().left;
+      let percent = Math.floor((touchX / timelineWidth) * customMainVideo.duration);
       const progressTime = customVideoTimeline.querySelector("span");
-      offsetX = offsetX < 20 ? 20 : offsetX > timelineWidth - 20 ? timelineWidth - 20 : offsetX;
-      progressTime.style.left = `${offsetX}px`;
+      touchX = touchX < 20 ? 20 : touchX > timelineWidth - 20 ? timelineWidth - 20 : touchX;
+      progressTime.style.left = `${touchX}px`;
       progressTime.innerText = formatCustomTime(percent);
     });
 
-    customVideoTimeline.addEventListener("click", (e) => {
+    customVideoTimeline.addEventListener("touchend", (e) => {
       let timelineWidth = customVideoTimeline.clientWidth;
-      customMainVideo.currentTime = (e.offsetX / timelineWidth) * customMainVideo.duration;
+      let touchX = e.changedTouches[0].clientX - customVideoTimeline.getBoundingClientRect().left;
+      customMainVideo.currentTime = (touchX / timelineWidth) * customMainVideo.duration;
     });
 
     customMainVideo.addEventListener("timeupdate", (e) => {
