@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const customPipBtn = customContainer.querySelector(".custom-pic-in-pic span");
     const customFullScreenBtn = customContainer.querySelector(".custom-fullscreen i");
     let customTimer;
+    
 
     const hideCustomControls = () => {
       if (customMainVideo.paused) return;
@@ -23,6 +24,15 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     hideCustomControls();
+
+
+    document.addEventListener('touchmove', function(e) {
+      // Impedisci il comportamento predefinito solo se il tocco è all'interno della zona del lettore video
+      if (e.target.closest('.asdrubale')) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
 
     customContainer.addEventListener("mousemove", () => {
       customContainer.classList.add("show-custom-controls");
