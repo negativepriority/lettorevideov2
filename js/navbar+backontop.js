@@ -38,39 +38,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// Get the button:
-
-
-// Get the button:
-let mybutton = document.getElementById("mybackontopBtn");
-
-// Function to handle scroll events
-function handleScroll() {
-  if (window.scrollY > 150) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
-
-// Event listener for scroll
-window.addEventListener("scroll", handleScroll);
-
-// Function to scroll to the top with animation
-function animateScroll() {
-  const scrollStep = window.scrollY / 30;
-
-  function scrollStepFunction() {
-    if (window.scrollY > 0) {
-      window.scrollTo(0, window.scrollY - scrollStep);
-      requestAnimationFrame(scrollStepFunction);
-    } else {
-      mybutton.style.display = "none";
-    }
-  }
-
-  scrollStepFunction();
-}
-
-// Event listener for button click
-mybutton.addEventListener("click", animateScroll);
