@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const customContainers = document.querySelectorAll(".asdrubale .custom-container");
   let scrollPosition = 0;
   let isTouchDevice = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+  let isScrolling = false;
 
   customContainers.forEach((customContainer, index) => {
     const customMainVideo = customContainer.querySelector("video");
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     hideCustomControls();
 
     customContainer.addEventListener("mousemove", () => {
-      if (!isTouchDevice) {
+      if (!isTouchDevice && !isScrolling) {
         customContainer.classList.add("show-custom-controls");
         clearTimeout(customTimer);
         hideCustomControls();
