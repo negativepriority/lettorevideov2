@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const customPipBtn = customContainer.querySelector(".custom-pic-in-pic span");
     const customFullScreenBtn = customContainer.querySelector(".custom-fullscreen i");
     let customTimer;
-    
 
     const hideCustomControls = () => {
       if (customMainVideo.paused) return;
@@ -25,15 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     hideCustomControls();
-
-    
-    customContainers.forEach((customContainer, index) => {
-
-    customContainer.addEventListener("mousemove", () => {
-      customContainer.classList.add("show-custom-controls");
-      clearTimeout(customTimer);
-      hideCustomControls();
-    });
 
     customContainer.addEventListener("mousemove", () => {
       if (!isTouchDevice) {
@@ -180,5 +170,4 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-});
 });
