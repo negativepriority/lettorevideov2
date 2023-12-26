@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+
+
 :root{
-    --main-color: #9a7ef6;
+    --main-color: #00adef;
     /*#ef7829*/
     --blue: #978888; 
     --blue-dark: #f5f5f5;
     --orange: rgb(60, 145, 214);
     --green-yellow: #cddc39;
-    --pink-light: #0f0d21;
+    --pink-light: #0d1521;
     --cyan-light: #423a37;
-    --bg-tasti-nav: rgb(29, 20, 53);
-    --traccia: rgb(75, 57, 125);
+    --bg-tasti-nav: rgb(20, 30, 53);
+    --traccia: #2d5c89;
     --nav2-c: #102b3a;
     --white: #ffffff;
     --white-alpha-40: rgba(153, 184, 200, 0.4);
@@ -28,9 +30,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Assicura che il preloader sia sopra gli altri elementi */
-  opacity: 1; /* Opacità iniziale a 1 (completamente visibile) */
-  transition: opacity 0.5s ease-in-out; /* Riduci la durata della transizione */
+  z-index: 1000; 
+  opacity: 1; 
+  transition: opacity 0.5s ease-in-out; 
 }
 
 #preloader img {
@@ -61,7 +63,7 @@ body.loading-done * {
   #preloader img {
     max-width: 200px;
   }
-}
+} 
 
  ::selection {
     background-color: var(--main-color);
@@ -212,7 +214,7 @@ body {
   .main-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+
     /*background-color: rgb(217, 179, 28);*/ /* Use the custom variable for orange */
     padding: 30px 120px 30px 120px; /* Adjust padding */
     width: 100%; /* Make it full-width */
@@ -266,6 +268,7 @@ body {
   margin:auto;
 
 }
+
 
   
 .image-container {
@@ -372,6 +375,27 @@ body {
   .image-container:hover .hover-image {
     opacity: 1;
   }
+
+.diocane{
+
+}
+
+.video-progetto{
+
+}
+
+.video-progetto{
+
+  width: 100%;
+  overflow: hidden;
+  max-width: 900px;
+  align-content: center;
+  justify-content: center;
+  margin:auto;
+  position: relative;
+
+}
+
 
   @media only screen and (min-width: 1900px){
     .grid {
@@ -546,7 +570,7 @@ body {
   }
 
   .logo:hover {
-    filter: brightness(0.8) contrast(0.22) sepia(1) hue-rotate(208deg) saturate(2.5) ; /* Modifica il colore al passaggio del mouse */
+    filter: brightness(0.6) contrast(0.39) sepia(1) hue-rotate(148deg) saturate(3) ; /* Modifica il colore al passaggio del mouse */
     cursor: pointer;
   }
 
