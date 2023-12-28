@@ -188,10 +188,11 @@ body {
   }
 
   .titolo-grande {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
     font-size:40px;
     margin-bottom: 10px;
     text-align: center;
-    font-weight: 600;
     line-height: 1.2;
   }
   

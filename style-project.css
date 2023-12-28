@@ -24,6 +24,7 @@
   }
 
   .project-grid-item p {
+
     margin: 0; /* Rimuovi il margine predefinito dei paragrafi */
   }
 
@@ -36,14 +37,38 @@
   } */
 
   .project-grid-item h4{
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 22px;
   }
 
   .project-grid-item p{
+    font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: 300;
   }
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Una colonna */
+    gap: 10px; /* Spazio tra le immagini */
+    max-width: 900px; /* Larghezza massima della griglia */
+    margin: auto; /* Margine esterno con centratura */
+  }
+
+  .image-item {
+    width: 100%; /* Larghezza dell'immagine al 100% della colonna */
+    height: auto; /* Altezza automatica mantenendo l'aspetto originale */
+    border-radius: 2px; /* Bordi arrotondati */
+    overflow: hidden; /* Nasconde eventuali overflow dell'immagine */
+  }
+
+  .image-item img {
+    width: 100%; /* Larghezza dell'immagine al 100% del contenitore */
+    height: auto; /* Altezza automatica mantenendo l'aspetto originale */
+    display: block; /* Elimina spazi bianchi aggiunti dalla visualizzazione inline */
+  }
+
 
   @media only screen and (max-width: 768px) {
     .project-grid-container {
