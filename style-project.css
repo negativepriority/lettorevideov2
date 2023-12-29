@@ -13,18 +13,18 @@
     padding: 60px 0;
     /* background-color: green; */
     max-width: 900px; /* Larghezza massima del container */
-    margin: auto; /* Centrare il container */
+    margin: auto;
+    align-items: left;
+    
   }
 
   .project-grid-item {
     padding: 0px; /* Ripristinato il padding */
     text-align: left; /* Allineamento a sinistra */
-    /* background-color: red; */
     color: var(--blue-dark);
   }
 
   .project-grid-item p {
-
     margin: 0; /* Rimuovi il margine predefinito dei paragrafi */
   }
 
@@ -68,6 +68,7 @@
     height: auto; /* Altezza automatica mantenendo l'aspetto originale */
     display: block; /* Elimina spazi bianchi aggiunti dalla visualizzazione inline */
   }
+
 
 
   @media only screen and (max-width: 768px) {
