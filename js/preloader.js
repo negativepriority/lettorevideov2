@@ -9,7 +9,13 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Attendi il caricamento completo del sito prima di rimuovere la classe 'loading'
-  window.addEventListener('load', function () {
+  window.addEventListener('pageshow', function (event) {
+      // Verifica se l'evento pageshow è dovuto al back/forward del browser
+      if (event.persisted) {
+          // Resetta la GIF al primo frame ogni volta che il preloader viene visualizzato
+          resetGif();
+      }
+
       setTimeout(function () {
           body.classList.remove('loading');
           preloader.style.opacity = '0'; // Riduci l'opacità del preloader
@@ -17,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
               preloader.style.display = 'none'; // Nascondi il preloader dopo l'animazione
           }, 500); // 500 millisecondi = 0.5 secondi
       }, 2050); // 2100 millisecondi = 2.3 secondi
-
-      // Resetta la GIF al primo frame ogni volta che il preloader viene visualizzato
-      preloader.addEventListener('transitionend', resetGif);
   });
+
+  // Resetta la GIF al primo frame quando il preloader viene nascosto
+  preloader.addEventListener('transitionend', resetGif);
 });
