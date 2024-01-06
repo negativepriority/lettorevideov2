@@ -258,6 +258,18 @@ body {
   opacity:0;
   user-select: none;
 }
+
+.spazio-sezioni-5{
+  /* background-color: red; */
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.spazio-sezioni-5 h6{
+  font-size: 1px;
+  opacity:0;
+  user-select: none;
+}
   
 
 .grid {
@@ -490,6 +502,12 @@ body {
       /* background-color: red; */
       margin-top: 0px;
       margin-bottom: 0px;
+    }
+
+    .spazio-sezioni-5{
+      /* background-color: red; */
+      margin-top: 7px;
+      margin-bottom: 7px;
     }
   
   }
