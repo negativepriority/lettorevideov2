@@ -51,3 +51,5 @@ document.addEventListener('DOMContentLoaded', function () {
     // Resetta la GIF al primo frame quando il DOM è pronto
     resetGif();
   });
+
+  //fix
