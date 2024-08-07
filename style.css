@@ -74,26 +74,40 @@ body.loading-done * {
     display: none !important;
 }
 
-/* Custom Scrollbar */
-/* Width della scrollbar */
-* {
+/* barra di scorrimento custom */
+/* Width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--white);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 0px;
+}
+
+/* Styling for Firefox */
+@supports (-moz-appearance: none) {
+  /* Width per Firefox */
+  * {
     scrollbar-width: thin;
+  }
+
+  /* Handle per Firefox */
+  * {
     scrollbar-color: var(--main-color) var(--white);
+  }
 }
 
-/* Track della scrollbar */
-*::-webkit-scrollbar {
-    width: 5px;
-}
-
-*::-webkit-scrollbar-track {
-    background-color: var(--white);
-}
-
-/* Thumb della scrollbar */
-*::-webkit-scrollbar-thumb {
-    background-color: var(--main-color);
-}
 
 *{
   padding: 0;
@@ -266,6 +280,18 @@ body {
 }
 
 .spazio-sezioni-5 h6{
+  font-size: 1px;
+  opacity:0;
+  user-select: none;
+}
+
+.spazio-sezioni-8{
+  /* background-color: red; */
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+.spazio-sezioni-8 h6{
   font-size: 1px;
   opacity:0;
   user-select: none;

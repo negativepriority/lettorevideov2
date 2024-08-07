@@ -67,7 +67,14 @@
     width: 100%; /* Larghezza dell'immagine al 100% del contenitore */
     height: auto; /* Altezza automatica mantenendo l'aspetto originale */
     display: block; /* Elimina spazi bianchi aggiunti dalla visualizzazione inline */
+    min-width: 100%; /* Aggiunta di questa linea */
   }
+
+/* Classe aggiuntiva per le immagini gif */
+.image-item.no-image {
+  opacity: 0%;
+  width: 0%;
+}
 
 
 

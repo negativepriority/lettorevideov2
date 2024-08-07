@@ -28,6 +28,7 @@
 
 .sec-padding{
     padding:50px 0;
+    /* background-color: blueviolet; */
 }
 
 .about-img{
@@ -47,26 +48,35 @@
     border: 1px solid var(--traccia);  
     margin: auto;
     border-radius: 3px;
+    overflow: hidden; /* l'immagine non esce dai bordi */
+}
+
+.about-img .img-box{
+    /*background-color: red;*/
 }
 
 .about-img .img-box img{
     width:100%;
+    object-fit: cover; /* Fa in modo che l'immagine riempa il container mantenendo il rapporto d'aspetto */
+    
 }
 
 .about-img{
-    /* background-color: aqua; */
+    /* background-color: aqua;  */
 }
 
 .img-box img{
-    /* background-color: green; */
+    /* background-color: green;  */
     position: relative;
-    top: 7px;
+    border-radius: 3px;
+    top: 3.5px;
+    
 }
 
 .img-box{
     /* background-color: green; */
     overflow: hidden;
-    padding:0px 15px;
+    padding:6px 11px;
 }
 
 
