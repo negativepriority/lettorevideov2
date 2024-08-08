@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Funzione per reimpostare la GIF al primo frame
     function resetGif() {
         const gifSrc = preloaderImage.src;
-        preloaderImage.src = '';
-        preloaderImage.src = gifSrc + '?' + new Date().getTime(); // Aggiungi un timestamp per evitare la cache
+        preloaderImage.src = '';  // Rimuove temporaneamente la src
+        preloaderImage.src = gifSrc + '?' + new Date().getTime(); // Riaggiunge la src con un timestamp per evitare la cache
     }
   
     // Funzione per gestire il caricamento della pagina e la rimozione del preloader
@@ -26,30 +26,21 @@ document.addEventListener('DOMContentLoaded', function () {
   
     // Gestisci l'evento popstate quando si torna indietro nella cronologia del browser
     window.addEventListener('popstate', function (event) {
-        // Verifica se l'evento popstate è dovuto al back/forward del browser
-        if (event.state && event.state.pageReloaded) {
-            // Resetta la GIF al primo frame quando la pagina viene ripresa dalla cache
-            resetGif();
-        }
+        // Resetta la GIF al primo frame quando la pagina viene ripresa dalla cache
+        resetGif();
     });
-  
-    // Resetta la GIF al primo frame quando il preloader viene nascosto
-    preloader.addEventListener('transitionend', resetGif);
   
     // Aggiungi un nuovo elemento di stato per indicare il ricaricamento della pagina
     history.replaceState({ pageReloaded: true }, '');
-  
+
     // Ascolta l'evento pageshow per gestire il ricaricamento della pagina
     window.addEventListener('pageshow', function (event) {
-        // Verifica se l'evento pageshow è dovuto al back/forward del browser
-        if (event.persisted) {
-            // Resetta la GIF al primo frame quando la pagina viene ripresa dalla cache
+        // Verifica se l'evento pageshow è dovuto al back/forward del browser o da cache
+        if (event.persisted || performance.getEntriesByType('navigation')[0].type === 'back_forward') {
             resetGif();
         }
     });
   
     // Resetta la GIF al primo frame quando il DOM è pronto
     resetGif();
-  });
-
-  //fix
+});
