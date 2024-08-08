@@ -10,8 +10,15 @@ document.addEventListener('DOMContentLoaded', function () {
         preloaderImage.src = gifSrc + '?' + new Date().getTime(); // Riaggiunge la src con un timestamp per evitare la cache
     }
   
-    // Funzione per gestire il caricamento della pagina e la rimozione del preloader
-    function handlePageLoad() {
+    // Funzione per mostrare il preloader
+    function showPreloader() {
+        preloader.style.display = 'flex';
+        preloader.style.opacity = '1';
+        body.classList.add('loading');
+    }
+
+    // Funzione per nascondere il preloader dopo il caricamento della pagina
+    function hidePreloader() {
         setTimeout(function () {
             body.classList.remove('loading');
             preloader.style.opacity = '0'; // Riduci l'opacità del preloader
@@ -22,11 +29,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   
     // Attendi il caricamento completo della pagina prima di rimuovere la classe 'loading'
-    window.addEventListener('load', handlePageLoad);
+    window.addEventListener('load', hidePreloader);
   
     // Gestisci l'evento popstate quando si torna indietro nella cronologia del browser
     window.addEventListener('popstate', function (event) {
-        // Resetta la GIF al primo frame quando la pagina viene ripresa dalla cache
+        showPreloader();
         resetGif();
     });
   
@@ -37,7 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('pageshow', function (event) {
         // Verifica se l'evento pageshow è dovuto al back/forward del browser o da cache
         if (event.persisted || performance.getEntriesByType('navigation')[0].type === 'back_forward') {
+            showPreloader();
             resetGif();
+            hidePreloader();
         }
     });
   
