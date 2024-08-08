@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const preloader = document.getElementById('preloader');
     const preloaderImage = document.getElementById('preloader-img');
     const body = document.body;
-    let isNavigatingBack = false;
 
     // Funzione per reimpostare la GIF al primo frame
     function resetGif() {
@@ -13,12 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Funzione per mostrare il preloader
     function showPreloader() {
-        if (!preloader.style.display || preloader.style.display === 'none') {
-            preloader.style.display = 'flex';
-            preloader.style.opacity = '1';
-            resetGif(); // Resetta la GIF solo quando il preloader viene mostrato
-            body.classList.add('loading');
-        }
+        preloader.style.display = 'flex';
+        preloader.style.opacity = '1';
+        resetGif(); // Resetta la GIF solo quando il preloader viene mostrato
+        body.classList.add('loading');
     }
 
     // Funzione per nascondere il preloader dopo il caricamento della pagina
@@ -28,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
             preloader.style.opacity = '0'; // Riduci l'opacità del preloader
             setTimeout(function () {
                 preloader.style.display = 'none'; // Nascondi il preloader dopo l'animazione
-                isNavigatingBack = false; // Reset flag per navigazione indietro
             }, 500); // 500 millisecondi = 0.5 secondi
         }, 2050); // 2050 millisecondi = 2.05 secondi
     }
@@ -37,17 +33,18 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('load', hidePreloader);
 
     // Gestisci l'evento popstate quando si torna indietro nella cronologia del browser
-    window.addEventListener('popstate', function () {
-        isNavigatingBack = true;
+    window.addEventListener('popstate', function (event) {
         showPreloader();
     });
 
+    // Aggiungi un nuovo elemento di stato per indicare il ricaricamento della pagina
+    history.replaceState({ pageReloaded: true }, '');
+
     // Ascolta l'evento pageshow per gestire il ricaricamento della pagina
     window.addEventListener('pageshow', function (event) {
+        // Verifica se l'evento pageshow è dovuto al back/forward del browser o da cache
         if (event.persisted || performance.getEntriesByType('navigation')[0].type === 'back_forward') {
-            if (!isNavigatingBack) { // Evita di ripetere il reset se già fatto
-                showPreloader();
-            }
+            showPreloader();
             hidePreloader();
         }
     });
