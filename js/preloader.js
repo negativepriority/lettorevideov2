@@ -3,11 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const preloaderImage = document.getElementById('preloader-img');
     const body = document.body;
 
-    // Funzione per reimpostare la GIF al primo frame
+    // Funzione per reimpostare la GIF al primo frame senza rimuovere temporaneamente la src
     function resetGif() {
         const gifSrc = preloaderImage.src;
-        preloaderImage.src = '';  // Rimuove temporaneamente la src
-        preloaderImage.src = gifSrc + '?' + new Date().getTime(); // Riaggiunge la src con un timestamp per evitare la cache
+        preloaderImage.src = gifSrc + '?' + new Date().getTime(); // Aggiorna la src con un timestamp per evitare la cache
     }
 
     // Funzione per mostrare il preloader
@@ -36,9 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('popstate', function (event) {
         showPreloader();
     });
-
-    // Aggiungi un nuovo elemento di stato per indicare il ricaricamento della pagina
-    history.replaceState({ pageReloaded: true }, '');
 
     // Ascolta l'evento pageshow per gestire il ricaricamento della pagina
     window.addEventListener('pageshow', function (event) {
