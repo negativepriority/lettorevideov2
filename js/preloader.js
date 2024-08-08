@@ -5,12 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Funzione per reimpostare la GIF al primo frame
     function resetGif() {
-        // Solo se la GIF è visibile
-        if (preloader.style.display === 'flex') {
-            const gifSrc = preloaderImage.src;
-            preloaderImage.src = '';  // Rimuove temporaneamente la src
-            preloaderImage.src = gifSrc + '?' + new Date().getTime(); // Riaggiunge la src con un timestamp per evitare la cache
-        }
+        const gifSrc = preloaderImage.src;
+        preloaderImage.src = '';  // Rimuove temporaneamente la src
+        preloaderImage.src = gifSrc + '?' + new Date().getTime(); // Riaggiunge la src con un timestamp per evitare la cache
     }
 
     // Funzione per mostrare il preloader
@@ -36,9 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('load', hidePreloader);
 
     // Gestisci l'evento popstate quando si torna indietro nella cronologia del browser
-    window.addEventListener('popstate', function () {
+    window.addEventListener('popstate', function (event) {
         showPreloader();
-        // Non nascondere il preloader qui, si nasconderà nel pageshow
     });
 
     // Aggiungi un nuovo elemento di stato per indicare il ricaricamento della pagina
@@ -46,12 +42,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Ascolta l'evento pageshow per gestire il ricaricamento della pagina
     window.addEventListener('pageshow', function (event) {
+        // Verifica se l'evento pageshow è dovuto al back/forward del browser o da cache
         if (event.persisted || performance.getEntriesByType('navigation')[0].type === 'back_forward') {
             showPreloader();
             hidePreloader();
         }
     });
 
-    // Mostra il preloader al caricamento iniziale
-    showPreloader();
+    // Resetta la GIF al primo frame quando il DOM è pronto
+    resetGif();
 });
