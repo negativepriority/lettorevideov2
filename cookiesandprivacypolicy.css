@@ -1,0 +1,182 @@
+body {
+    background: #0d1521;
+    color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 28px;
+    margin: 0
+}
+
+::selection {
+    background-color: #00adef;
+    color: white; /* Imposta il colore del testo quando è selezionato */
+}
+
+/* barra di scorrimento custom */
+/* Width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #00adef;
+  border-radius: 0px;
+}
+
+/* Styling for Firefox */
+@supports (-moz-appearance: none) {
+  /* Width per Firefox */
+  * {
+    scrollbar-width: thin;
+  }
+
+  /* Handle per Firefox */
+  * {
+    scrollbar-color: #00adef #f5f5f5;
+  }
+  
+}
+
+h1 {
+    font-size: 40px;
+    line-height: 60px
+}
+
+h1,
+h2 {
+    font-weight: 700
+}
+
+h2 {
+    font-size: 32px;
+    line-height: 48px
+}
+
+h3 {
+    font-size: 24px;
+    line-height: 36px
+}
+
+h3,
+h4 {
+    font-weight: 700
+}
+
+h4 {
+    font-size: 20px;
+    line-height: 30px
+}
+
+h5 {
+    font-size: 16px
+}
+
+h5,
+h6 {
+    line-height: 24px;
+    font-weight: 700
+}
+
+h6 {
+    font-size: cacl(16px)
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #00adef
+}
+
+a:hover,
+a[rel~=nofollow] {
+    text-decoration: underline
+}
+
+a[rel~=nofollow] {
+    color: #00adef
+}
+
+a[rel~=nofollow]:hover {
+    text-decoration: none
+}
+
+.visible {
+    display: block
+}
+
+.hidden {
+    display: none
+}
+
+.page {
+    width: 100%
+}
+
+.container {
+    position: relative;
+    width: 90%;
+    max-width: 1024px;
+    margin: 0 auto
+}
+
+.header {
+    color: #f5f5f5;
+    padding: 16px 0
+}
+
+.header .title {
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 700;
+    margin: 0
+}
+
+.translations-list-container {
+    color: #f5f5f5;
+    padding-bottom: 8px;
+    margin: 0 0 16px
+}
+
+.translations-list-container .translations-list {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+.translations-list-container .translations-list .translations-list-item {
+    display: inline-block;
+    padding: 0;
+    margin: 0 8px 8px 0;
+    color: #fff
+}
+
+.translations-list-container .translations-list .translations-list-item a {
+    display: inline-block;
+    padding: 4px 8px
+}
+
+.translations-list-container .translations-list .translations-list-item a.active {
+    color: #fff;
+    background: #334055
+}
+
+.translations-content-container {
+    padding-top: 8px;
+    border-top: 1px solid #eee
+}
+
+.footer {
+    border-top: 1px solid #eee;
+    margin: 32px 0 0;
+    padding: 16px 0
+}
