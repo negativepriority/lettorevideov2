@@ -103,57 +103,58 @@
 
 <!-- Contact Section End -->
 
+
+<script src="js/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+<script src=gdpr-cookie.js></script>
+<script>
+  $.gdprcookie.init({
+      title: "🍪 Accept cookies & privacy policy?",
+      message: 'This website makes use of cookies to enhance browsing experience and provide additional functionality. <a href="cookiesandprivacypolicy.html" target="_blank" style="color:#00adef; text-decoration: underline;">Cookies and Privacy Policy</a><br><br>',  // Aggiunge spazio extra
+      delay: 600,
+      expires: 1,
+      acceptBtnLabel: "Accept cookies",
+  });
+  
+
+  $(document.body)
+      .on("gdpr:show", function() {
+          console.log("Cookie dialog is shown");
+      })
+      .on("gdpr:accept", function() {
+          var preferences = $.gdprcookie.preference();
+          console.log("Preferences saved:", preferences);
+      })
+      .on("gdpr:advanced", function() {
+          console.log("Advanced button was pressed");
+      });
+
+  if ($.gdprcookie.preference("marketing") === true) {
+      console.log("This should run because marketing is accepted.");
+  }
+</script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
   <script src="js/preloader.js"></script>
   <!-- <script src="js/stars-bg.js"></script> -->
   <script src="js/navbar+backontop.js"></script>
   <script src="js/contact.js"></script>
   
-
-
-   
-  <script src="js/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
-  <script src=gdpr-cookie.js></script>
-  <script>
-    $.gdprcookie.init({
-        title: "🍪 Accept cookies & privacy policy?",
-        message: 'This website makes use of cookies to enhance browsing experience and provide additional functionality. <a href="cookiesandprivacypolicy.html" target="_blank" style="color:#00adef; text-decoration: underline;">Cookies and Privacy Policy</a><br><br>',  // Aggiunge spazio extra
-        delay: 600,
-        expires: 1,
-        acceptBtnLabel: "Accept cookies",
-    });
-    
-
-    $(document.body)
-        .on("gdpr:show", function() {
-            console.log("Cookie dialog is shown");
-        })
-        .on("gdpr:accept", function() {
-            var preferences = $.gdprcookie.preference();
-            console.log("Preferences saved:", preferences);
-        })
-        .on("gdpr:advanced", function() {
-            console.log("Advanced button was pressed");
-        });
-
-    if ($.gdprcookie.preference("marketing") === true) {
-        console.log("This should run because marketing is accepted.");
-    }
-</script>
-
-  <script type="text/javascript">
-  
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-36251023-1']);
-    _gaq.push(['_setDomainName', 'jqueryscript.net']);
-    _gaq.push(['_trackPageview']);
-  
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  
-  </script>
 
 
 
